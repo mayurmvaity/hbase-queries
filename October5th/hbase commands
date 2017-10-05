@@ -1,0 +1,53 @@
+create 'niit1', 'info', 'roles'
+
+
+put 'niit1', 'cutting', 'info:height', '9 ft'
+
+put 'niit1', 'cutting', 'info:state', 'CA'
+
+put 'niit1', 'cutting', 'roles:ASF', 'Founder'
+
+
+
+scan 'niit1'
+
+describe 'niit1'
+
+alter 'niit1', {NAME => 'info', VERSIONS => '3'}
+
+put 'niit1', 'cutting', 'info:state', 'NY'
+
+
+get 'niit1', 'cutting'
+
+get 'niit1', 'cutting', {COLUMN => 'info:state', VERSIONS => 2}
+
+put 'niit1', 'cutting', 'roles:hadoop', 'committer'
+
+put 'niit1', 'tlipcon', 'roles:hadoop', 'PMC'
+
+
+
+alter 'niit1', 'personal'
+
+put 'niit1', 'tlipcon', 'personal:fname', 'ABC'
+
+-------------------------------------------------------------------------
+Uploading from mysql to hbase
+
+
+create 'college', 'student_profile', 'fy_result'
+
+sqoop commands:
+
+sqoop import --connect jdbc:mysql://localhost/college --username root -password 'adam' --table student_master --columns "student_id, address" --hbase-table college --column-family student_profile --hbase-row-key student_id -m 1;
+
+sqoop import --connect jdbc:mysql://localhost/college --username root --password 'adam' --table fy --columns "student_id, result" --hbase-table college --column-family fy_result --hbase-row-key student_id -m 1;
+
+
+
+scan 'college'
+
+
+
+
